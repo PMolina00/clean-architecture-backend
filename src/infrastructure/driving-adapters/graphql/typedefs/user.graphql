@@ -1,0 +1,33 @@
+
+type User {
+    id: ID!
+    name: String!
+    username: String!
+    email: String!
+    age: Int!
+    notes: [NoteUser!]
+}
+
+type NoteUser {
+    content: String!
+    date: String!
+    important: String!
+}
+
+#Inputs
+input UserCreateInput {
+    name: String!
+    username: String!
+    age: Int!
+    email: String!
+    password: String!
+}
+
+input UserUpdateInput {
+    id: ID!
+    name: String
+    username: String
+    age: Int
+    email: String
+    password: String
+}

@@ -1,0 +1,26 @@
+type Note {
+    id: String
+    content: String!
+    date: String!
+    important: Boolean!
+    user: UserNote!
+}
+
+type UserNote {
+    username: String!
+}
+
+#Inputs 
+input NoteCreateInput {
+    content: String!
+    date: String!
+    important: Boolean!
+    user: String!
+}
+
+input NoteUpdateInput {
+    id: ID!
+    content: String
+    date: String
+    important: Boolean
+}

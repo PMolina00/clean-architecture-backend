@@ -1,0 +1,11 @@
+type Query {
+    user: [User],
+    note: [Note]
+}
+
+type Mutation {
+    createUser(user: UserCreateInput!): User!,
+    updateUser(user: UserUpdateInput!): User!,
+    createNote(note: NoteCreateInput!): Note!,
+    updateNote(note: NoteUpdateInput!): Note!
+}
