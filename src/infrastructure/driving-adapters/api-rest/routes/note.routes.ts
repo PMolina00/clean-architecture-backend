@@ -6,13 +6,14 @@ import {
   deleteNoteController,
   getOneNoteController
 } from '../controllers'
+import { authMiddleware } from '../middleware'
 
 const route = Router()
 
-route.get('/', getAllNotesController)
-route.get('/:id', getOneNoteController)
-route.post('/', createNoteController)
-route.put('/', updateNoteController)
-route.delete('/', deleteNoteController)
+route.get('/', authMiddleware, getAllNotesController)
+route.get('/:id', authMiddleware, getOneNoteController)
+route.post('/', authMiddleware, createNoteController)
+route.put('/', authMiddleware, updateNoteController)
+route.delete('/', authMiddleware, deleteNoteController)
 
 export default route

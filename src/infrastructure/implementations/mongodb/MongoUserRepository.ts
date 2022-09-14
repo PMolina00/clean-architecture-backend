@@ -19,6 +19,7 @@ export class MongoRepository implements UserRepository {
     return users
   }
 
+  // * Method Save
   async save (user: User): Promise<User> {
     const userToCreate = new this._mongoDB(user)
     try {
@@ -60,7 +61,11 @@ export class MongoRepository implements UserRepository {
   }
 
   async getByUserName (username: string): Promise<User | null> {
-    const user = await this._mongoDB.findOne({ username })
+    const user = await this._mongoDB.findOne({ username }).populate('notes', {
+      content: 1,
+      date: 1,
+      important: 1
+    })
     return user
   }
 
@@ -70,7 +75,11 @@ export class MongoRepository implements UserRepository {
   }
 
   async getById (id: string): Promise<User | null> {
-    const user = await this._mongoDB.findOne({ id })
+    const user = await this._mongoDB.findOne({ id }).populate('notes', {
+      content: 1,
+      date: 1,
+      important: 1
+    })
     return user
   }
 }

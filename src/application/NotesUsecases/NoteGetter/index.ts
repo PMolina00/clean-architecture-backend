@@ -8,8 +8,8 @@ export class NoteGetterUseCase {
     this._noteRepository = noteRepository
   }
 
-  async run (): Promise<Note[]> {
-    const notes: Note[] = await this._noteRepository.getAll()
+  async run (id: string): Promise<Note[]> {
+    const notes: Note[] = await this._noteRepository.getAll(id)
     return notes
   }
 }

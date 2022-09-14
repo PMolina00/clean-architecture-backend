@@ -13,11 +13,12 @@ export class MongoNoteRepository implements NoteRepository {
     this._userMongoDB = UserModelSchema
   }
 
-  async getAll (): Promise<Note[]> {
-    const notes = await this._mongoDB.find({}).populate('user', {
-      username: 1
+  async getAll (id: string): Promise<Note[]> {
+    const notes = await this._mongoDB.find({ }).populate('user', {
+      username: 1,
+      id: 1
     })
-    return notes
+    return notes.filter(n => n.user.id === id)
   }
 
   async save (note: Note): Promise<Note> {

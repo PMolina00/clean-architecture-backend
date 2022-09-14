@@ -19,6 +19,8 @@ const auth = async (req: Request, res: Response, next: NextFunction): Promise<vo
       })
     }
 
+    req.body.userId = login.id
+
     return next()
   } catch (e) {
     console.log(e)

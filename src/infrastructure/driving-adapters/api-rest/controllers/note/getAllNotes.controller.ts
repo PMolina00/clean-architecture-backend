@@ -6,8 +6,10 @@ export const getAllNotes = async (req: Request, res: Response, next: NextFunctio
   const dbRepository = new MongoNoteRepository()
   const noteGetter = new NoteGetterUseCase(dbRepository)
 
+  console.log()
+
   try {
-    const notes = await noteGetter.run()
+    const notes = await noteGetter.run(req.body.userId)
     res.json(notes)
     return
   } catch (e) {

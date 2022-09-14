@@ -1,11 +1,9 @@
-import { Types } from 'mongoose'
-
 export interface Note {
   id: string
   content: string
   date: string
   important: boolean
-  user: Types.ObjectId
+  user: any
 }
 
 export interface NoteToUpdate {
@@ -13,7 +11,7 @@ export interface NoteToUpdate {
   content?: string
   date?: string
   important?: boolean
-  user?: Types.ObjectId
+  user?: any
 }
 
 export interface NoteToDelete {
@@ -21,5 +19,5 @@ export interface NoteToDelete {
   content?: string
   date?: string
   important?: boolean
-  user?: Types.ObjectId
+  user?: any
 }

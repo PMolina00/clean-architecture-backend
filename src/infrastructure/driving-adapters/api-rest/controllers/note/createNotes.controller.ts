@@ -8,7 +8,7 @@ export const createNote = async (req: Request, res: Response, next: NextFunction
     content,
     date,
     important,
-    user
+    userId
   } = req.body
 
   const dbRepository = new MongoNoteRepository()
@@ -19,7 +19,7 @@ export const createNote = async (req: Request, res: Response, next: NextFunction
     content,
     date,
     important,
-    user
+    user: userId
   }
 
   try {

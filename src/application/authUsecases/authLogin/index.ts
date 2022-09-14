@@ -16,7 +16,7 @@ export class AuthLoginUseCase {
 
   async run (user: LogInReq): Promise<LogInRes> {
     const userData = await this._userRepository.getByUserName(user.userName)
-    if (userData === null || await this._userAuth.comparePassword(userData.password, user.password)) {
+    if (userData === null || !await this._userAuth.comparePassword(userData.password, user.password)) {
       throw new Error('user or password incorrect')
     }
     const logInRes = await this._jwtManagement.generate(userData)

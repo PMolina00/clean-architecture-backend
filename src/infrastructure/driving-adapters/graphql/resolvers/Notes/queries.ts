@@ -8,7 +8,7 @@ const noteQueries = {
     const noteGetter = new NoteGetterUseCase(dbRepository)
 
     try {
-      const notes = await noteGetter.run()
+      const notes = await noteGetter.run('')
       return notes
     } catch (e) {
       return HandlerError.run(e)

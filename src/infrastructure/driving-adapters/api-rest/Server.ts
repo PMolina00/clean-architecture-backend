@@ -12,7 +12,15 @@ export class Server {
     this._port = port
     this._app = express()
     this._app.use(express.json())
-    this._app.use(express.urlencoded({ extended: false }))
+    this._app.use(express.urlencoded({ extended: true, limit: '50mb' }))
+    this._app.use(express.json({ limit: '50mb' }))
+    this._app.use((req, res, next) => {
+      res.header('Access-Control-Allow-Origin', '*') // update to match the domain you will make the request from
+      res.header('Access-Control-Allow-Credentials', 'true')
+      res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+      next()
+    })
     this._app.use(morgan('tiny'))
     this._app.use(routes)
   }
@@ -21,7 +29,7 @@ export class Server {
     return await new Promise(resolve => {
       this._httpServer = this._app.listen(this._port, () => {
         console.log(
-                `Backend App is running at http://localhost:${this._port}`
+          `Backend App is running at http://localhost:${this._port}`
         )
         console.log(
           'Press CTRL-C to stop\n'
